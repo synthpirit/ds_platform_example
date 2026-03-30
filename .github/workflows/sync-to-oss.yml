@@ -1,9 +1,12 @@
-name: Sync to OSS
+name: Sync Notebooks to OSS
 
 on:
   push:
     branches:
       - main
+      - dev
+    paths:
+      - 'notebooks/**'
 
 jobs:
   sync:
@@ -33,6 +36,6 @@ jobs:
         env:
           OSS_BUCKET: ${{ vars.OSS_BUCKET }}
         run: |
-          ossutil sync ./notebooks/ oss://$OSS_BUCKET/notebooks \
+          ossutil sync ./notebooks/ oss://$OSS_BUCKET/${{ github.ref_name }}/notebooks/ \
             --delete \
             --force
