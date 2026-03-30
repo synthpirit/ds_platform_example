@@ -33,6 +33,6 @@ jobs:
         env:
           OSS_BUCKET: ${{ vars.OSS_BUCKET }}
         run: |
-          ossutil sync ./notebooks/ oss://$OSS_BUCKET/ \
+          ossutil sync ./notebooks/ oss://$OSS_BUCKET/notebooks \
             --delete \
             --force
